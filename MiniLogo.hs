@@ -1,3 +1,8 @@
+{-
+ -  Assigment 1
+ -  Group: Hannah Adams, Paul Freeman, Marcos Zavala
+ -}
+
 module MiniLogo where
 
 data Cmd = Pen Mode

@@ -1,3 +1,8 @@
+{-
+ -  Assigment 1
+ -  Group: Hannah Adams, Paul Freeman, Marcos Zavala
+ -}
+
 module Arithmetic where
 
 -- basic syntax

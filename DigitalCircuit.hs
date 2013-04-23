@@ -1,3 +1,8 @@
+{-
+ -  Assigment 1
+ -  Group: Hannah Adams, Paul Freeman, Marcos Zavala
+ -}
+
 module DigitalCircuit where
 
 data Circuit = Cir Gates Links deriving Show
@@ -22,5 +27,4 @@ ppGateFn Not = "not;\n"
 
 ppLink (FromTo (a,b) (c,d) links) = "from " ++ show a ++ "." ++ show b ++ " to " ++ show c ++ "." ++ show d ++ ";\n" ++ ppLink links
 ppLink NoLink = []
-
 
