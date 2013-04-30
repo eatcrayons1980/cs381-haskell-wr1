@@ -1,3 +1,8 @@
+{-
+ -  Assigment 2
+ -  Group: Hannah Adams, Paul Freeman, Marcos Zavala
+ -}
+
 module Assign2 where
 
 import SVG (ppLines)
