@@ -1,5 +1,6 @@
 module Assign2 where
 
+import SVG (ppLines)
 import Data.List (find)
 
 {--------------------------------------------
@@ -112,3 +113,34 @@ eval2 l = sem2 l (Just ([], []))
 {--------------------------------------------
  - Exercise 3
  --------------------------------------------}
+data Cmd = Pen Mode
+		 | MoveTo Int Int
+		 | Seq Cmd Cmd deriving Show
+
+data Mode = Up | Down deriving Show
+
+type State = (Mode,Int,Int)
+
+type Line = (Int,Int,Int,Int)
+type Lines = [Line]
+
+semS :: Cmd -> State -> (State,Lines)
+semS (Pen m) (_, x, y)             = ((m, x, y), [])
+semS (MoveTo x y) (Up, _, _)       = ((Up, x, y), [])
+semS (MoveTo x2 y2) (Down, x1, y1) = ((Down, x2, y2), [(x1, y1, x2, y2)])
+semS (Seq c1 c2) s0                = let (s1, as) = semS c1 s0 in
+                                   		let (s2, bs) = semS c2 s1 in
+									    	(s2, as++bs)
+
+sem' :: Cmd -> Lines
+sem' c = snd $ semS c (Up, 0, 0)
+
+-- test functions to write Hannah's name
+hannah_h :: Int -> Int -> Cmd
+hannah_h x y = Seq (Pen Up) (Seq (MoveTo x y) (Seq (Pen Down) (Seq (MoveTo (x+0) (y+4)) (Seq (MoveTo (x+0) (y+2)) (Seq (MoveTo (x+2) (y+2)) (Seq (MoveTo (x+2) (y+4)) (MoveTo (x+2) (y+0))))))))
+
+hannah_a :: Int -> Int -> Cmd
+hannah_a x y = Seq (Pen Up) (Seq (MoveTo x y) (Seq (Pen Down) (Seq (MoveTo (x+0) (y+4)) (Seq (MoveTo (x+2) (y+4)) (Seq (MoveTo (x+2) (y+0)) (Seq (MoveTo (x+2) (y+2)) (MoveTo (x+0) (y+2))))))))
+
+hannah_n :: Int -> Int -> Cmd
+hannah_n x y = Seq (Pen Up) (Seq (MoveTo x y) (Seq (Pen Down) (Seq (MoveTo (x+0) (y+4)) (Seq (MoveTo (x+2) (y+0)) (MoveTo (x+2) (y+4))))))
