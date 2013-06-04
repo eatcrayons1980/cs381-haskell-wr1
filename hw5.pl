@@ -1,8 +1,4 @@
-/* Assigment 3 */
-/* Group: Hannah Adams, Paul Freeman, Marcos Zavala */
-
-
-/* Exercise 1 */
+/*Group: Hannah Adams, Paul Freeman, Marcos Zavala */
 
 when(275,10).
 when(261,12).
@@ -40,7 +36,6 @@ meet(X,Y) :- enroll(X,A), enroll(Y,B), when(A,C), dec(C, C1), when(B,C1), where(
 inc(X, X1) :- X1 is X+1.
 dec(X, X1) :- X1 is X -1.
 
-/* Exercise 2 */
 /* Part 2 A */
 rdups([], []).
 rdups([H | T], T1) :- member(H, T), rdups(T, T1).
