@@ -1,3 +1,6 @@
+/* Assigment 3 */
+/* Group: Hannah Adams, Paul Freeman, Marcos Zavala */
+
 
 /* Exercise 1 */
 
@@ -37,6 +40,7 @@ meet(X,Y) :- enroll(X,A), enroll(Y,B), when(A,C), dec(C, C1), when(B,C1), where(
 inc(X, X1) :- X1 is X+1.
 dec(X, X1) :- X1 is X -1.
 
+/* Exercise 2 */
 /* Part 2 A */
 rdups([], []).
 rdups([H | T], T1) :- member(H, T), rdups(T, T1).
@@ -49,8 +53,11 @@ flatten([Item|Tail], L, Flattened):- flatten(Item, L1, Flattened), flatten(Tail,
 flatten(Item, Flattened, [Item|Flattened]):- \+ is_list(Item).
 
 /*Part 2 C */
-
-
-count(X, [Head | Tail], M) :- X = 1, M is Head.
-count(X, [Head | Tail], M) :- X \= 1, dec(X, X1), count(X1, Tail, M).
+project(A, B, C):- project0(A, B, C, 1).
+project0(_, [], [], _).
+project0([], _, [], _).
+project0([X|_], [L],  [L], C):- X = C.
+project0([X|_], [_], [], C):- X\=C.
+project0([X|L1], [Y|L2],[Y|L] ,C):- X= C, C1 is 1 + C, project0(L1, L2, L, C1).
+project0([X|L1], [_|L2],L ,C):- X\= C, C1 is 1 + C, project0([X|L1], L2, L, C1).
 
